@@ -1,0 +1,26 @@
+# Wymagania pakietowe dla szkolenia
+# Rekomendowany Python: >= 3.10
+
+# Główne biblioteki analityczne
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Silniki analityczne i bazy danych
+duckdb>=0.10.0
+sqlalchemy>=2.0.0
+
+# Formaty plików I/O
+openpyxl>=3.1.0         # Odczyt i zapis plików Excel (.xlsx)
+pyarrow>=15.0.0         # Format kolumnowy Parquet i backend Arrow
+
+# Wizualizacja danych
+plotly>=5.20.0          # Interaktywne wykresy i dashboardy w przeglądarce
+matplotlib>=3.8.0       # Publikacyjne wykresy statyczne
+seaborn>=0.13.0         # Macierze korelacji i wykresy statystyczne
+
+# Generatory danych i narzędzia pomocnicze
+faker>=24.0.0           # Generowanie realistycznych danych biznesowych (PESEL, adresy)
+
+# Środowisko uruchomieniowe
+jupyterlab>=4.1.0       # Interaktywne środowisko pracy z notatnikami (.ipynb)
+notebook>=7.1.0

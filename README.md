@@ -157,6 +157,17 @@ Notatniki z ćwiczeniami dla uczestników. Każde zadanie zawiera:
 
 Zwięzłe, publicznie dostępne zbiory danych pod stałymi adresami URL (szczegółowy opis dydaktyczny znajduje się również w pliku [110_Bonus_2_Przydatne_Datasety_Treningowe.md](pokazowe/110_Bonus_2_Przydatne_Datasety_Treningowe.md)). Możesz je wczytać do dowolnego notatnika w jednej linijce kodu (`pd.read_csv('URL')`) — bez pobierania i rozpakowywania plików na dysku. Przydadzą się do ćwiczeń i prototypowania po szkoleniu:
 
+### Zestawienie zbiorów i rekomendowane tematy do ćwiczeń
+
+| Zbiór | URL / Źródło | Parametry odczytu | Do jakich tematów w Pandas pasuje najlepiej? |
+| :--- | :--- | :--- | :--- |
+| **`drinks`** | `http://bit.ly/drinksbycountry` | Domyślne | • Agregacje grupowe: `groupby('continent').agg(...)`<br>• Średnie i sumy per kontynent<br>• Sortowanie: `sort_values(by='beer_servings', ascending=False)`<br>• Szybkie wykresy słupkowe: `df.plot(kind='bar')` |
+| **`movies`** | `http://bit.ly/imdbratings` | Domyślne | • Filtrowanie logiczne `df.query()`<br>• Sortowanie po ocenie (`star_rating`) i czasie trwania (`duration`)<br>• Wartości skrajne: `.nlargest(10, 'star_rating')`<br>• Częstości: `value_counts()` na gatunkach filmowych (`genre`) |
+| **`orders`** | `http://bit.ly/chiporders` | **`sep='\t'` (Tabulator)** | • Obsługa nietypowych separatorów w `read_csv`<br>• Oczyszczanie tekstu: usunięcie znaku `$` z cen i konwersja na float (`str.replace` / `to_numeric`)<br>• Wartość koszyka i tabele przestawne |
+| **`stocks`** | `http://bit.ly/smallstocks` | **`parse_dates=['Date']`** | • Indeks czasowy i analiza finansowa<br>• Format szeroki: `pivot_table(index='Date', columns='Symbol', values='Close')`<br>• Okna kroczące `rolling()` i wyliczanie stóp zwrotu |
+| **`titanic`** | `http://bit.ly/kaggletrain` | Domyślne | • Diagnoza i czyszczenie braków: `.isnull().sum()`, `dropna(subset=['Age', 'Embarked'])`<br>• Imputacja wieku medianą: `fillna(df['Age'].median())`<br>• Przeżywalność per klasa z `value_counts(normalize=True)` |
+| **`ufo`** | `http://bit.ly/uforeports` | **`parse_dates=['Time']`** | • Akcesor `.dt`: wyciąganie roku (`dt.year`), dnia tygodnia (`dt.day_name()`)<br>• Agregacja w czasie metodą `.resample('YE')` lub `.resample('ME')`<br>• Wykrywanie anomalii w zgłoszeniach |
+
 ### Szybkie snippety do wklejenia w komórkę
 
 ```python
@@ -180,14 +191,3 @@ titanic = pd.read_csv('http://bit.ly/kaggletrain')
 # 6. Rejestr obserwacji UFO w USA (akcesor czasowy .dt, strefy, rozkłady w czasie)
 ufo = pd.read_csv('http://bit.ly/uforeports', parse_dates=['Time'])
 ```
-
-### Zestawienie zbiorów i rekomendowane tematy do ćwiczeń
-
-| Zbiór | URL / Źródło | Parametry odczytu | Do jakich tematów w Pandas pasuje najlepiej? |
-| :--- | :--- | :--- | :--- |
-| **`drinks`** | `http://bit.ly/drinksbycountry` | Domyślne | • Agregacje grupowe: `groupby('continent').agg(...)`<br>• Średnie i sumy per kontynent<br>• Sortowanie: `sort_values(by='beer_servings', ascending=False)`<br>• Szybkie wykresy słupkowe: `df.plot(kind='bar')` |
-| **`movies`** | `http://bit.ly/imdbratings` | Domyślne | • Filtrowanie logiczne `df.query()`<br>• Sortowanie po ocenie (`star_rating`) i czasie trwania (`duration`)<br>• Wartości skrajne: `.nlargest(10, 'star_rating')`<br>• Częstości: `value_counts()` na gatunkach filmowych (`genre`) |
-| **`orders`** | `http://bit.ly/chiporders` | **`sep='\t'` (Tabulator)** | • Obsługa nietypowych separatorów w `read_csv`<br>• Oczyszczanie tekstu: usunięcie znaku `$` z cen i konwersja na float (`str.replace` / `to_numeric`)<br>• Wartość koszyka i tabele przestawne |
-| **`stocks`** | `http://bit.ly/smallstocks` | **`parse_dates=['Date']`** | • Indeks czasowy i analiza finansowa<br>• Format szeroki: `pivot_table(index='Date', columns='Symbol', values='Close')`<br>• Okna kroczące `rolling()` i wyliczanie stóp zwrotu |
-| **`titanic`** | `http://bit.ly/kaggletrain` | Domyślne | • Diagnoza i czyszczenie braków: `.isnull().sum()`, `dropna(subset=['Age', 'Embarked'])`<br>• Imputacja wieku medianą: `fillna(df['Age'].median())`<br>• Przeżywalność per klasa z `value_counts(normalize=True)` |
-| **`ufo`** | `http://bit.ly/uforeports` | **`parse_dates=['Time']`** | • Akcesor `.dt`: wyciąganie roku (`dt.year`), dnia tygodnia (`dt.day_name()`)<br>• Agregacja w czasie metodą `.resample('YE')` lub `.resample('ME')`<br>• Wykrywanie anomalii w zgłoszeniach |
